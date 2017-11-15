@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Cat Clicker</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-  <h1>Cat Clicker</h1>
+  <div class="container">
+    <h1>Cat Clicker</h1>
 
-  <div class="content">
-    <h2 id="cat-1-count" class="count">You've clicked the cat 0 times</h2>
-    <img class="img" id="cat-1-img" src="img/cat.jpg">
+    <div class="col-sm-4 cat-list">
+      <ul>
+        <li>Cat 1</li>
+        <li>Cat 2</li>
+      </ul>
+    </div>
 
-
-    <h2 id="cat-2-count" class="count">You've clicked the cat 0 times</h2>
-    <img class="img" id="cat-2-img" src="img/cat-2.jpg">
-
+    <div class="col-sm-8 cat-detail">
+      <h2 id="cat-1-count" class="count">You've clicked the cat 0 times</h2>
+      <img class="img" id="cat-1-img" src="img/Bruce.jpg">
+    </div>
   </div>
 
   <script src="js/libs/jquery.min.js"></script>
+  <script src="js/libs/bootstrap.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
