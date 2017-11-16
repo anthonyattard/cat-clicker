@@ -73,6 +73,14 @@ var catView = {
         this.catImageElem = document.getElementById("cat-img");
         this.countElem = document.getElementById("cat-count");
 
+
+        this.catNameInputElem = document.getElementById("cat-name-input");
+        this.catImgUrlInputElem = document.getElementById("cat-img-url-input");
+        this.catClicksInputElem = document.getElementById("cat-clicks-input");
+
+        
+
+
         // on click, increment the current cat"s counter
         this.catImageElem.addEventListener("click", function(){
             controller.incrementCounter();
@@ -88,6 +96,11 @@ var catView = {
         this.countElem.textContent = currentCat.clickCount;
         this.catNameElem.textContent = currentCat.name;
         this.catImageElem.src = currentCat.imgSrc;
+
+
+        this.catNameInputElem.value = currentCat.name;
+        this.catImgUrlInputElem.value = currentCat.imgSrc;
+        this.catClicksInputElem.value = currentCat.clickCount;
     }
 };
 
