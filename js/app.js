@@ -71,6 +71,26 @@ var controller = {
     setIsAdmin: function() {
         model.isAdmin = true;
         catView.render();
+    },
+
+    // update cat data
+    updateCat: function() {
+        // extract values from inputs
+        var name = $('#cat-name-input').val();
+        var url = $('#cat-img-url-input').val();
+        var clickCount = $('#cat-clicks-input').val();
+
+        // update the currentCat data
+        model.currentCat.name = name;
+        model.currentCat.imgSrc = url;
+        model.currentCat.clickCount = clickCount;
+
+        // remove admin status from user
+        model.isAdmin = false;
+
+        // render views to show cat data updates
+        catListView.render();
+        catView.render();
     }
 };
 
@@ -89,17 +109,26 @@ var catView = {
         this.catClicksInputElem = document.getElementById("cat-clicks-input");
         this.adminBtn = document.getElementById("admin-btn");
         this.catEdit = document.getElementById("cat-edit");
+        this.saveElem = document.getElementById("save");
 
         
-        // on click, increment the current cat"s counter
+        // on click, increment the current cat's counter
         this.catImageElem.addEventListener("click", function(){
             controller.incrementCounter();
         });
 
 
+        // when admin button is clicked set isAdmin to true
         this.adminBtn.addEventListener("click", function(){
             controller.setIsAdmin();
         });
+
+
+        // when save button is clicked update the cat data
+        this.saveElem.addEventListener("click", function(){
+            controller.updateCat();
+        });
+
 
         // render this view (update the DOM elements with the right values)
         this.render();
@@ -111,16 +140,16 @@ var catView = {
         this.countElem.textContent = currentCat.clickCount;
         this.catNameElem.textContent = currentCat.name;
         this.catImageElem.src = currentCat.imgSrc;
-
         this.catNameInputElem.value = currentCat.name;
         this.catImgUrlInputElem.value = currentCat.imgSrc;
         this.catClicksInputElem.value = currentCat.clickCount;
 
+        // if user is not admin hide the cat-edit element
         if(model.isAdmin == false) {
-            console.log("false");
             $("#cat-edit").hide();
         }
 
+        // if user is not admin show the cat-edit element
         if(model.isAdmin == true) {
             $("#cat-edit").show();
         }
