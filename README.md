@@ -14,4 +14,4 @@ Either clone the repo or download the zip file. Navigate to the directory and op
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
