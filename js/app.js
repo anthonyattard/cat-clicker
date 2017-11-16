@@ -1,6 +1,7 @@
 /* ======= Model ======= */
 var model = {
     currentCat: null,
+    isAdmin: false,
     cats: [
         {
             clickCount: 0,
@@ -59,6 +60,17 @@ var controller = {
     incrementCounter: function() {
         model.currentCat.clickCount++;
         catView.render();
+    },
+
+    // get isAdmin
+    getIsAdmin: function() {
+        return model.isAdmin;
+    },
+
+    // set isAdmin
+    setIsAdmin: function() {
+        model.isAdmin = true;
+        catView.render();
     }
 };
 
@@ -72,18 +84,21 @@ var catView = {
         this.catNameElem = document.getElementById("cat-name");
         this.catImageElem = document.getElementById("cat-img");
         this.countElem = document.getElementById("cat-count");
-
-
         this.catNameInputElem = document.getElementById("cat-name-input");
         this.catImgUrlInputElem = document.getElementById("cat-img-url-input");
         this.catClicksInputElem = document.getElementById("cat-clicks-input");
+        this.adminBtn = document.getElementById("admin-btn");
+        this.catEdit = document.getElementById("cat-edit");
 
         
-
-
         // on click, increment the current cat"s counter
         this.catImageElem.addEventListener("click", function(){
             controller.incrementCounter();
+        });
+
+
+        this.adminBtn.addEventListener("click", function(){
+            controller.setIsAdmin();
         });
 
         // render this view (update the DOM elements with the right values)
@@ -97,10 +112,18 @@ var catView = {
         this.catNameElem.textContent = currentCat.name;
         this.catImageElem.src = currentCat.imgSrc;
 
-
         this.catNameInputElem.value = currentCat.name;
         this.catImgUrlInputElem.value = currentCat.imgSrc;
         this.catClicksInputElem.value = currentCat.clickCount;
+
+        if(model.isAdmin == false) {
+            console.log("false");
+            $("#cat-edit").hide();
+        }
+
+        if(model.isAdmin == true) {
+            $("#cat-edit").show();
+        }
     }
 };
 
